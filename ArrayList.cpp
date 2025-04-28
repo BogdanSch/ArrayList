@@ -63,6 +63,7 @@ bool ArrayList::descendingCompare(int a, int b)
     return a < b;
 }
 
+//O(n + nlog[n]) = O(nlog[n])
 void ArrayList::heapsort(bool isAscending)
 {
 	if (isEmpty())
@@ -73,7 +74,7 @@ void ArrayList::heapsort(bool isAscending)
 
 	compareFunc = isAscending ? &ascendingCompare : &descendingCompare;
 
-	buildMaxHeap();
+	buildMaxOrMinHeap();
 
 	for (int i = length - 1; i > 0; i--)
     {
@@ -82,7 +83,8 @@ void ArrayList::heapsort(bool isAscending)
 	}
 }
 
-void ArrayList::buildMaxHeap()
+//O(n)
+void ArrayList::buildMaxOrMinHeap()
 {
 	if (isEmpty())
     {
@@ -90,12 +92,13 @@ void ArrayList::buildMaxHeap()
 		return;
 	}
 
-	for (int i = floor(length / 2 - 1); i >= 0; i--)
+	for (int i = floor((length - 1) / 2); i >= 0; i--)
     {
 		heapify(length, i);
 	}
 }
 
+//O(nlog[n])
 void ArrayList::heapify(int heapLength, int i)
 {
 	if (isEmpty())
@@ -105,7 +108,7 @@ void ArrayList::heapify(int heapLength, int i)
 	}
 
 	int leftIndex = 2 * i + 1;
-	int rightIndex = 2 * i + 2;
+	int rightIndex = leftIndex + 1;
     int maxIndex = i;
 
     if (leftIndex < heapLength && compareFunc(items[leftIndex], items[maxIndex]))

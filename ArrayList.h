@@ -10,7 +10,7 @@ private:
     int length;
     bool (*compareFunc)(int, int) = &ascendingCompare;
 protected:
-    void buildMaxHeap();
+    void buildMaxOrMinHeap();
     void heapify(int length, int i);
 public:
     ArrayList() : length(0) {}
