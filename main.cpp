@@ -9,7 +9,7 @@ int main() {
     ArrayList myList({ 1, 1000, 2, 999, 3, 998, 4, 997, 0, -100, -5, INT_MAX, -INT_MAX, -200});
     myList.printList();
 
-    int choice;
+    /*int choice;
     std::cout << "Enter 1 for ascending, 0 for descending: ";
     cin >> choice;
 
@@ -19,11 +19,11 @@ int main() {
     myList.heapsort(isAscending);
 
     myList.printList();
-
-    /*std::cout << "Building max heap\n";
+    */
+    std::cout << "Building max heap:\n";
     myList.buildHeap();
 
-    myList.printList();*/
+    myList.printList();
 
     return 0;
 }

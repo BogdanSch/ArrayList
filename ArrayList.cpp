@@ -12,13 +12,13 @@ void ArrayList::add(int item)
         cout << "Cannot add item. List is full.\n";
         return;
     }
-    items[length++] = item;
+    items[++length] = item;
 }
 
 int ArrayList::indexOf(int item) const
 {
     int index = -1;
-    for (int i = 0; i < length; ++i) 
+    for (int i = 1; i <= length; i++) 
     {
         if (items[i] == item) 
         {
@@ -45,7 +45,7 @@ void ArrayList::remove(int item)
         return;
     }
 
-    for (int i = index; i < length - 1; ++i)
+    for (int i = index; i <= length; i++)
     {
         items[i] = items[i + 1];
     }
@@ -62,7 +62,6 @@ bool ArrayList::descendingCompare(int a, int b)
     return a < b;
 }
 
-//O(n + nlog[n]) = O(nlog[n])
 void ArrayList::heapsort(bool isAscending)
 {
 	if (isEmpty())
@@ -75,21 +74,19 @@ void ArrayList::heapsort(bool isAscending)
 
 	buildMaxOrMinHeap();
 
-	for (int i = length - 1; i > 0; i--)
+	for (int i = length; i >= 2; i--)
     {
-		swap(items[0], items[i]);
-		heapify(i, 0);
+		swap(items[1], items[i]);
+		heapify(i - 1, 1);
 	}
 }
 
-//O(n)
 void ArrayList::buildHeap()
 {
     compareFunc = &ascendingCompare;
 	buildMaxOrMinHeap();
 }
 
-//O(n)
 void ArrayList::buildMaxOrMinHeap()
 {
 	if (isEmpty())
@@ -98,13 +95,12 @@ void ArrayList::buildMaxOrMinHeap()
 		return;
 	}
 
-	for (int i = floor((length - 1) / 2); i >= 0; i--)
+	for (int i = length / 2; i >= 1; i--)
     {
 		heapify(length, i);
 	}
 }
 
-//O(log[n])
 void ArrayList::heapify(int heapLength, int i)
 {
 	if (isEmpty())
@@ -113,19 +109,19 @@ void ArrayList::heapify(int heapLength, int i)
 		return;
 	}
 
-	int leftIndex = 2 * i + 1;
+	int leftIndex = 2 * i;
 	int rightIndex = leftIndex + 1;
-    int maxIndex = i;
+    int index = i;
 
-    if (leftIndex < heapLength && compareFunc(items[leftIndex], items[maxIndex]))
-        maxIndex = leftIndex;
-    if (rightIndex < heapLength && compareFunc(items[rightIndex], items[maxIndex]))
-        maxIndex = rightIndex;
+    if (leftIndex <= heapLength && compareFunc(items[leftIndex], items[index]))
+        index = leftIndex;
+    if (rightIndex <= heapLength && compareFunc(items[rightIndex], items[index]))
+        index = rightIndex;
 
-    if (maxIndex != i)
+    if (index != i)
     {
-        swap(items[i], items[maxIndex]);
-        heapify(heapLength, maxIndex);
+        swap(items[i], items[index]);
+        heapify(heapLength, index);
     }
 }
 
@@ -138,7 +134,7 @@ void ArrayList::printList() const
     }
 
     cout << "List items: ";
-    for (int i = 0; i < length; ++i)
+    for (int i = 1; i <= length; ++i)
     {
         cout << items[i] << " ";
     }
