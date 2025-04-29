@@ -6,7 +6,7 @@ using std::cout;
 using std::cin;
 
 int main() {
-    ArrayList myList({ 1, 1000, 2, 999, 3, 998, 4, 997, 0, -100, -5, INT_MAX, -INT_MAX });
+    ArrayList myList({ 1, 1000, 2, 999, 3, 998, 4, 997, 0, -100, -5, INT_MAX, -INT_MAX, -200});
     myList.printList();
 
     int choice;
@@ -19,6 +19,11 @@ int main() {
     myList.heapsort(isAscending);
 
     myList.printList();
+
+    /*std::cout << "Building max heap\n";
+    myList.buildHeap();
+
+    myList.printList();*/
 
     return 0;
 }

@@ -24,6 +24,7 @@ public:
     static bool ascendingCompare(int a, int b);
     static bool descendingCompare(int a, int b);
     void heapsort(bool isAscending);
+    void buildHeap();
     void printList() const;
     int size() const { return length; }
 };

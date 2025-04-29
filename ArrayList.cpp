@@ -4,7 +4,6 @@
 using std::cout; 
 using std::endl;
 using std::swap;
-using std::function;
 
 void ArrayList::add(int item)
 {
@@ -84,11 +83,18 @@ void ArrayList::heapsort(bool isAscending)
 }
 
 //O(n)
+void ArrayList::buildHeap()
+{
+    compareFunc = &ascendingCompare;
+	buildMaxOrMinHeap();
+}
+
+//O(n)
 void ArrayList::buildMaxOrMinHeap()
 {
 	if (isEmpty())
     {
-		cout << "Cannot build max heap. List is empty.\n";
+		cout << "Cannot build heap. List is empty.\n";
 		return;
 	}
 
@@ -98,7 +104,7 @@ void ArrayList::buildMaxOrMinHeap()
 	}
 }
 
-//O(nlog[n])
+//O(log[n])
 void ArrayList::heapify(int heapLength, int i)
 {
 	if (isEmpty())
