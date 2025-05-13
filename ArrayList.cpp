@@ -81,10 +81,13 @@ void ArrayList::heapsort(bool isAscending)
 	}
 }
 
-void ArrayList::buildHeap()
+ArrayList* ArrayList::buildHeap(vector<int>& numbers)
 {
-    compareFunc = &ascendingCompare;
-	buildMaxOrMinHeap();
+    ArrayList* tempList = new ArrayList(numbers);
+    //tempList.compareFunc = &ascendingCompare;
+    tempList->buildMaxOrMinHeap();
+
+	return tempList;
 }
 
 void ArrayList::buildMaxOrMinHeap()
